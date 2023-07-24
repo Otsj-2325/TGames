@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class ChangeScene : MonoBehaviour
+public class SCR_ChangeScene : MonoBehaviour
 {
 
     //遷移先のシーン
     public string nextScene;
 
     //時間経過でシーン遷移する場合
-    public bool bTimeFlag;
+    [SerializeField] bool DelayFlag;
+    [SerializeField] float DelayTime = 2.0f;
 
     public static string loadAfterScene;
 
@@ -20,21 +21,20 @@ public class ChangeScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
-        if (bTimeFlag)
+        if(DelayFlag)
         {
-            Invoke("Change", 3.0f);
+            Invoke("Change", DelayTime);
         }
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        
 
-       
+
     }
 
     //シーン切り替え

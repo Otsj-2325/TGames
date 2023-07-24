@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextSceneButton : MonoBehaviour
+public class SCR_NextSceneButton : MonoBehaviour
 {
     //‘JˆÚæ‚ÌƒV[ƒ“
     [SerializeField] string nextScene;

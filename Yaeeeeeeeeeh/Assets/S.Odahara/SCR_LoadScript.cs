@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadScript : MonoBehaviour
+public class SCR_LoadScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,6 @@ public class LoadScript : MonoBehaviour
     //ÉVÅ[ÉìêÿÇËë÷Ç¶
     void Change()
     {
-        SceneManager.LoadScene(NextSceneButton.loadAfterScene);
+        SceneManager.LoadScene(SCR_ChangeScene.loadAfterScene);
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class SCR_StartButton : MonoBehaviour
 {
     [SerializeField] String sceneName;
     [SerializeField] AudioClip touchAudio;//G‚Á‚½‚Æ‚«‚Ì‰¹
