@@ -16,16 +16,17 @@ public class SCR_RaycastAround : MonoBehaviour
         RaycastHit hitData;
 
         for(float rot = 0; rot < 2 * Mathf.PI; rot += Mathf.PI / 180.0f){
-            Vector3 dir;
-            dir.x = Mathf.Cos(rot);
-            dir.y = Mathf.Tan(rot);
-            dir.z = Mathf.Sin(rot);
+            for (float rot2 = 0; rot2 < 2 * Mathf.PI; rot2 += Mathf.PI / 180.0f)
+            {
+                Vector3 dir;
+                dir.x = Mathf.Cos(rot);
+                dir.y = Mathf.Tan(rot);
+                dir.z = Mathf.Sin(rot);
 
-            Physics.Raycast(transform.position, dir * 10);
-            Debug.DrawRay(transform.position, dir * 10, Color.blue, 0.01f, true);
-            
+                Physics.Raycast(transform.position, dir * 10);
+                Debug.DrawRay(transform.position, dir * 10, Color.blue, 0.01f, true);
 
-
+            }
         }
     }
 }
