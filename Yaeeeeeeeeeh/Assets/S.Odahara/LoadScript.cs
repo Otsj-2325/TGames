@@ -8,18 +8,18 @@ public class LoadScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("Change",3.0f);
+        Invoke("Change", 2.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //ÉVÅ[ÉìêÿÇËë÷Ç¶
     void Change()
     {
-        SceneManager.LoadScene(ChangeScene.loadAfterScene);
+        SceneManager.LoadScene(NextSceneButton.loadAfterScene);
     }
 }
