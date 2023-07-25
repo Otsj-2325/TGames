@@ -5,44 +5,44 @@ using UnityEngine.InputSystem;
 
 public class SCR_KeyboardInput : MonoBehaviour
 {
-    bool m_EnterKeyPressed;
-    bool m_TabKeyPressed;
-    bool m_SpaceKeyPressed;
-    bool m_WKeyPressed;
-    bool m_AKeyPressed;
-    bool m_SKeyPressed;
-    bool m_DKeyPressed;
-    bool m_RKeyPressed;
-    bool m_EKeyPressed;
+    public bool EnterKeyPressed;
+    public bool TabKeyPressed;
+    public bool SpaceKeyPressed;
+    public bool WKeyPressed;
+    public bool AKeyPressed;
+    public bool SKeyPressed;
+    public bool DKeyPressed;
+    public bool RKeyPressed;
+    public bool EKeyPressed;
 
     // Update is called once per frame
     void Update()
     {
         // Enterキーの状態を取得
-        m_EnterKeyPressed = Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter);
+        EnterKeyPressed = Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter);
 
         // Tabキーの状態を取得
-        m_TabKeyPressed = Input.GetKey(KeyCode.Tab);
+        TabKeyPressed = Input.GetKey(KeyCode.Tab);
 
         // Spaceキーの状態を取得
-        m_SpaceKeyPressed = Input.GetKey(KeyCode.Space);
+        SpaceKeyPressed = Input.GetKey(KeyCode.Space);
 
         // Wキーの状態を取得
-        m_WKeyPressed = Input.GetKey(KeyCode.W);
+        WKeyPressed = Input.GetKey(KeyCode.W);
 
         // Aキーの状態を取得
-        m_AKeyPressed = Input.GetKey(KeyCode.A);
+        AKeyPressed = Input.GetKey(KeyCode.A);
 
         // Sキーの状態を取得
-        m_SKeyPressed = Input.GetKey(KeyCode.S);
+        SKeyPressed = Input.GetKey(KeyCode.S);
 
         // Dキーの状態を取得
-        m_DKeyPressed = Input.GetKey(KeyCode.D);
+        DKeyPressed = Input.GetKey(KeyCode.D);
 
         // Rキーの状態を取得
-        m_RKeyPressed = Input.GetKey(KeyCode.R);
+        RKeyPressed = Input.GetKey(KeyCode.R);
 
         // Eキーの状態を取得
-        m_EKeyPressed = Input.GetKey(KeyCode.E);
+        EKeyPressed = Input.GetKey(KeyCode.E);
     }
 }

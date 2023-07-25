@@ -10,41 +10,66 @@ public class SCR_Cursor : MonoBehaviour
 {
     [SerializeField] List<RectTransform> m_PositionList;
     [SerializeField] List<UnityEvent> m_ButtonEventList;
-    int m_PosIndex = 0;
 
-    // Start is called before the first frame update
+    [SerializeField] bool m_IsVerticalStick;
+
+    private int m_PosIndex = 0;
+    private float m_Delaytime = 0.4f;
+    private float m_Time = 0.0f;
+
+    // レフトスティックの入力による選択の制約
+    private float m_LeftStickSensitivity = 0.9f; // レフトスティックの感度（値を大きくすると感度が下がる）
+
     void Start()
     {
         transform.position = m_PositionList[0].position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Gamepad.current == null) { return; }
-
-        transform.position = m_PositionList[m_PosIndex].position;
-
-        if (Gamepad.current.leftStick.ReadValue().y > 0)
+        m_Time += Time.unscaledDeltaTime;
+        if (m_Time > m_Delaytime)
         {
-            m_PosIndex--;
+            if (Gamepad.current == null) { return; }
 
-            if(m_PosIndex < 0){
-                m_PosIndex = 0;
+            transform.position = m_PositionList[m_PosIndex].position;
+
+            // レフトスティックの入力取得
+            Vector2 leftStickInput = Gamepad.current.leftStick.ReadValue();
+
+            if(m_IsVerticalStick)
+            {
+                if (Mathf.Abs(leftStickInput.y) > m_LeftStickSensitivity)//感度を超えている場合
+                {
+                    // レフトスティックの上下の傾きに応じて選択肢を変更
+                    if (leftStickInput.y > 0) m_PosIndex += -1;
+                    else if (leftStickInput.y < 0) m_PosIndex += 1;
+
+                    m_PosIndex = Mathf.Clamp(m_PosIndex, 0, m_PositionList.Count - 1);// 選択肢の範囲を制限
+
+                    m_Time = 0.2f; //ディレイをリセット
+                }
             }
-        }
-        else if (Gamepad.current.leftStick.ReadValue().y < 0)
-        {
-            m_PosIndex++;
+            if (!m_IsVerticalStick)
+            {
+                if (Mathf.Abs(leftStickInput.x) > m_LeftStickSensitivity)//感度を超えている場合
+                {
+                    // レフトスティックの左右の傾きに応じて選択肢を変更
+                    if (leftStickInput.x > 0) m_PosIndex += 1;
+                    else if (leftStickInput.x < 0) m_PosIndex += -1;
 
-            if(m_PosIndex > m_PositionList.Count -1){
-                m_PosIndex = m_PositionList.Count - 1;
+                    m_PosIndex = Mathf.Clamp(m_PosIndex, 0, m_PositionList.Count - 1);// 選択肢の範囲を制限
+
+                    m_Time = 0.2f; //ディレイをリセット
+                }
             }
-        }
 
-        if(Gamepad.current.buttonSouth.isPressed){
-            m_ButtonEventList[m_PosIndex].GetPersistentTarget(0).GetComponent<Button>().onClick.Invoke();
+
+            // Aボタンの入力
+            if (Gamepad.current.buttonSouth.isPressed)
+            {
+                m_ButtonEventList[m_PosIndex].Invoke();
+            }
         }
     }
-
 }

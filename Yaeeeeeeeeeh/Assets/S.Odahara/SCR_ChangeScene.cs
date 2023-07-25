@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 
 public class SCR_ChangeScene : MonoBehaviour
@@ -14,6 +15,7 @@ public class SCR_ChangeScene : MonoBehaviour
     //時間経過でシーン遷移する場合
     [SerializeField] bool DelayFlag;
     [SerializeField] float DelayTime = 2.0f;
+    [SerializeField] bool m_IsAbottonflg = false;
 
     public static string loadAfterScene;
 
@@ -32,7 +34,13 @@ public class SCR_ChangeScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(m_IsAbottonflg)
+        {
+            if(Gamepad.current.buttonSouth.isPressed)
+            {
+                Invoke("Change", 0.0f);
+            }
+        }
 
 
     }
@@ -40,8 +48,9 @@ public class SCR_ChangeScene : MonoBehaviour
     //シーン切り替え
     public void Change()
     {
+        Time.timeScale = 1f;
         //ロード後のシーン
         loadAfterScene = nextScene;
-        SceneManager.LoadScene("Load");
+        SceneManager.LoadScene("LoadScene");
     }
 }
