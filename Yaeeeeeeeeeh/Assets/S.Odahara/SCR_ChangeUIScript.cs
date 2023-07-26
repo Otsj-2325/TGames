@@ -36,7 +36,7 @@ public class SCR_ChangeUIScript : MonoBehaviour
     {
         if(m_Returnflg)
         {
-            if(Gamepad.current.bButton.isPressed)//Bボタンキーボードで戻る処理を後で追加
+            if(Input.GetKeyDown(KeyCode.Escape) || Gamepad.current.bButton.isPressed)//Bボタンキーボードで戻る処理を後で追加
             {
                 Return();
             }
@@ -54,7 +54,7 @@ public class SCR_ChangeUIScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return) || Gamepad.current.buttonSouth.isPressed)
             {
-                m_Button.onClick.Invoke();
+                Next();
             }
         }
     }

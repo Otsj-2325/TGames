@@ -11,6 +11,7 @@ public class SCR_Cursor : MonoBehaviour
     [SerializeField] List<RectTransform> m_PositionList;
     [SerializeField] List<UnityEvent> m_ButtonEventList;
 
+    [Header("上下にスティックを動かすか（左スティックのみ対応）") ]
     [SerializeField] bool m_IsVerticalStick;
 
     private int m_PosIndex = 0;
@@ -39,11 +40,11 @@ public class SCR_Cursor : MonoBehaviour
 
             if(m_IsVerticalStick)
             {
-                if (Mathf.Abs(leftStickInput.y) > m_LeftStickSensitivity)//感度を超えている場合
+                if (Mathf.Abs(leftStickInput.y) > m_LeftStickSensitivity || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))//感度を超えている場合
                 {
                     // レフトスティックの上下の傾きに応じて選択肢を変更
-                    if (leftStickInput.y > 0) m_PosIndex += -1;
-                    else if (leftStickInput.y < 0) m_PosIndex += 1;
+                    if (leftStickInput.y > 0 || Input.GetKeyDown(KeyCode.W)) m_PosIndex += -1;
+                    else if (leftStickInput.y < 0 || Input.GetKeyDown(KeyCode.S)) m_PosIndex += 1;
 
                     m_PosIndex = Mathf.Clamp(m_PosIndex, 0, m_PositionList.Count - 1);// 選択肢の範囲を制限
 
@@ -52,11 +53,11 @@ public class SCR_Cursor : MonoBehaviour
             }
             if (!m_IsVerticalStick)
             {
-                if (Mathf.Abs(leftStickInput.x) > m_LeftStickSensitivity)//感度を超えている場合
+                if (Mathf.Abs(leftStickInput.x) > m_LeftStickSensitivity || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))//感度を超えている場合
                 {
                     // レフトスティックの左右の傾きに応じて選択肢を変更
-                    if (leftStickInput.x > 0) m_PosIndex += 1;
-                    else if (leftStickInput.x < 0) m_PosIndex += -1;
+                    if (leftStickInput.x > 0 || Input.GetKeyDown(KeyCode.D)) m_PosIndex += 1;
+                    else if (leftStickInput.x < 0 || Input.GetKeyDown(KeyCode.A)) m_PosIndex += -1;
 
                     m_PosIndex = Mathf.Clamp(m_PosIndex, 0, m_PositionList.Count - 1);// 選択肢の範囲を制限
 
@@ -66,7 +67,7 @@ public class SCR_Cursor : MonoBehaviour
 
 
             // Aボタンの入力
-            if (Gamepad.current.buttonSouth.isPressed)
+            if (Gamepad.current.buttonSouth.isPressed || Input.GetKeyDown(KeyCode.Return))
             {
                 m_ButtonEventList[m_PosIndex].Invoke();
             }

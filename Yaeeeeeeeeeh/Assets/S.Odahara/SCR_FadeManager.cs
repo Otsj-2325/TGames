@@ -26,7 +26,7 @@ public class SCR_FadeManager : MonoBehaviour
     private static Color m_color = Color.black;//フェードの色
 
     //遷移先のシーン番号
-    private static string nextScene;
+    private static string m_nextScene;
     //フェード用のCanvasとImage生成
     static void Init()
     {
@@ -50,29 +50,30 @@ public class SCR_FadeManager : MonoBehaviour
     }
 
     //フェードイン開始
-    public static void FadeIn()
+    public static void FadeIn(Color col, float fadetime)
     {
         if (m_fadeImage == null) Init();
-        m_fadeImage.color = m_color;
-        Time.timeScale = 0f;//時止める
+        m_fadeImage.color = col;
+        m_fadeTime = fadetime;
         m_alpha = 1.0f;
         m_isFadeInFinish = false;
         m_isFadeIn = true;
+        Time.timeScale = 0f;//時止める
     }
 
     //フェードアウト開始
-    public static void FadeOut(string n, Color col, float fadetime)
+    public static void FadeOut(string scenename, Color col, float fadetime)
     {
         if (m_fadeImage == null) Init();
-        nextScene = n;
+        m_nextScene = scenename;
         m_color = col;
         m_fadeTime = fadetime;
-        m_fadeImage.color = Color.clear;
-        Time.timeScale = 0f;//時止める
+        m_fadeImage.color = Color.clear;     
         m_fadeCanvas.enabled = true;
         m_alpha = 0.0f;
         m_isFadeOut = true;
         m_isFadeOutFinish = false;
+        Time.timeScale = 0f;//時止める
     }
 
     void Update()
@@ -81,7 +82,7 @@ public class SCR_FadeManager : MonoBehaviour
         if (m_isFadeIn)
         {
             //経過時間から透明度計算
-            m_alpha -= Time.deltaTime / m_fadeTime;
+            m_alpha -= Time.unscaledDeltaTime / m_fadeTime;
 
             //フェードイン終了判定
             if (m_alpha <= 0.0f)
@@ -100,7 +101,7 @@ public class SCR_FadeManager : MonoBehaviour
         else if (m_isFadeOut)
         {
             //経過時間から透明度計算
-            m_alpha += Time.deltaTime / m_fadeTime;
+            m_alpha += Time.unscaledDeltaTime / m_fadeTime;
 
             //フェードアウト終了判定
             if (m_alpha >= 1.0f)
@@ -110,7 +111,7 @@ public class SCR_FadeManager : MonoBehaviour
                 Time.timeScale = 1f;//再開
                 m_isFadeOutFinish = true;
                 //次のシーンへ遷移
-                SceneManager.LoadScene(nextScene);
+                SceneManager.LoadScene(m_nextScene);
             }
 
             //フェード用Imageの色・透明度設定
