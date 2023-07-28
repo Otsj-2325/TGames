@@ -21,6 +21,8 @@ public class SCR_Credit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //仮バージョン（raycastで画面外判定して初期位置に戻す処理とか加えたら自然かも、テキスト長くなるとむずいかな）
         if(m_rectTransform.anchoredPosition.y < m_LimitPosY)
         {
             m_rectTransform.anchoredPosition = new Vector3(0.0f, m_MovePos, 0.0f);

@@ -34,17 +34,18 @@ public class SCR_ChangeUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_Returnflg)
+        //キーボード処理
+        if (m_Returnflg)
         {
-            if(Input.GetKeyDown(KeyCode.Escape) || Gamepad.current.bButton.isPressed)//Bボタンキーボードで戻る処理を後で追加
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Return();
             }
         }
 
-        if(m_Pauseflg)
+        if (m_Pauseflg)
         {
-            if(Input.GetKeyDown(KeyCode.Tab) || Gamepad.current.startButton.wasPressedThisFrame)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 Pause();
             }
@@ -52,11 +53,40 @@ public class SCR_ChangeUIScript : MonoBehaviour
 
         if (m_BottonAflg)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || Gamepad.current.buttonSouth.isPressed)
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 Next();
             }
         }
+
+        //ゲームパッド処理
+        if (Gamepad.current == null) { return; }
+        else{
+            if (m_Returnflg)
+            {
+                if (Gamepad.current.bButton.isPressed)//Bボタンキーボードで戻る処理を後で追加
+                {
+                    Return();
+                }
+            }
+
+            if (m_Pauseflg)
+            {
+                if (Gamepad.current.startButton.wasPressedThisFrame)
+                {
+                    Pause();
+                }
+            }
+
+            if (m_BottonAflg)
+            {
+                if (Gamepad.current.buttonSouth.isPressed)
+                {
+                    Next();
+                }
+            }
+        }
+
     }
 
 

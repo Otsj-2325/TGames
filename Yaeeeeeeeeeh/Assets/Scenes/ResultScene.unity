@@ -374,6 +374,7 @@ MonoBehaviour:
   m_DelayTime: 1
   m_IsAbottonflg: 0
   m_IsBbottonflg: 0
+  m_IsLoadflg: 1
   m_FadeOutColor: {r: 0, g: 0, b: 0, a: 1}
   m_FadeOutTime: 0.4
 --- !u!114 &439751561
@@ -722,7 +723,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u623B\u308B"
+  m_Text: Next Stage
 --- !u!222 &879107860
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -743,32 +744,14 @@ GameObject:
   - component: {fileID: 900954533}
   - component: {fileID: 900954532}
   - component: {fileID: 900954531}
-  - component: {fileID: 900954530}
+  - component: {fileID: 900954535}
   m_Layer: 0
-  m_Name: return
+  m_Name: nextstage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &900954530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900954529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f2525ea0fec5945b25328668b318e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UI: {fileID: 1360256896}
-  m_PreviousUI: {fileID: 0}
-  m_NextUI: {fileID: 0}
-  m_Returnflg: 1
-  m_Pauseflg: 1
-  m_BottonAflg: 0
 --- !u!114 &900954531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,6 +854,26 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: -150}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &900954535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900954529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913d5bcc760ee024b8e067ca0e26d534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: Stage1Scene
+  m_IsDelayFlag: 0
+  m_DelayTime: 1
+  m_IsAbottonflg: 0
+  m_IsBbottonflg: 0
+  m_IsLoadflg: 1
+  m_FadeOutColor: {r: 0, g: 0, b: 0, a: 1}
+  m_FadeOutTime: 0.4
 --- !u!1 &1035269511
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +911,7 @@ MonoBehaviour:
   m_DelayTime: 1
   m_IsAbottonflg: 0
   m_IsBbottonflg: 0
+  m_IsLoadflg: 1
   m_FadeOutColor: {r: 0, g: 0, b: 0, a: 1}
   m_FadeOutTime: 0.4
 --- !u!114 &1035269513
@@ -1543,6 +1547,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420652989}
   m_CullTransparentMesh: 1
+--- !u!1001 &1483709709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2296507821361047534, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_Name
+      value: FadeIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 162.39745
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 583.6795
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.8890343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515820739657538121, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc834fe1453194e49a59dce070ba9f87, type: 3}
 --- !u!1 &1554484619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,6 +1722,7 @@ MonoBehaviour:
   m_DelayTime: 1
   m_IsAbottonflg: 0
   m_IsBbottonflg: 0
+  m_IsLoadflg: 1
   m_FadeOutColor: {r: 0, g: 0, b: 0, a: 1}
   m_FadeOutTime: 0.4
 --- !u!114 &1922351728
@@ -1865,9 +1927,9 @@ MonoBehaviour:
         m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 900954530}
-        m_TargetAssemblyTypeName: SCR_ChangeUIScript, Assembly-CSharp
-        m_MethodName: Return
+      - m_Target: {fileID: 900954535}
+        m_TargetAssemblyTypeName: SCR_ChangeScene, Assembly-CSharp
+        m_MethodName: Change
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2082,3 +2144,4 @@ SceneRoots:
   - {fileID: 1405266915}
   - {fileID: 291716490}
   - {fileID: 1341209834}
+  - {fileID: 1483709709}
