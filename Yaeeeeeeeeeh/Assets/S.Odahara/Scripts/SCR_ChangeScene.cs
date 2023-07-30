@@ -106,4 +106,19 @@ public class SCR_ChangeScene : MonoBehaviour
         }
         
     }
+
+    public void Change(string scenename)
+    {
+        Time.timeScale = 1f;
+        if (m_IsDelayFlag)
+        {
+            Invoke("scenename", m_DelayTime);
+        }
+
+        else
+        {
+            Invoke("scenename", 0.0f);
+        }
+
+    }
 }
