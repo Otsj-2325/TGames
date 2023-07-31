@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class SCR_GameManager : MonoBehaviour
 {
-    public static SCR_GameManager scr_GameManager;
-    public static float[] m_StageScorenum = new float[5];
+    public static SCR_GameManager instance;
+    public static float[] m_StageScorenum = new float[5];//一応PlayerPrefs
     public static string[] m_StageScore = new string[5];
 
     void Awake()
     {
-        if (scr_GameManager == null)
+        if (instance == null)
         {
-            scr_GameManager = new SCR_GameManager();
-
-            DontDestroyOnLoad(scr_GameManager);
+            //このオブジェクトをシーン遷移時に保持する
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
         }
-
+        else
+        {
+            // 既に存在する場合は重複しないように削除
+            Destroy(this.gameObject);
+        }
     }
 
     void Start()
@@ -65,5 +69,16 @@ public class SCR_GameManager : MonoBehaviour
             m_StageScore[stagenum] = "B";
             PlayerPrefs.SetString(stagename, "B");
         }
+    }
+
+    //データを削除
+    public static void DeleteScore()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            m_StageScorenum[i] = 0;
+            m_StageScore[i] = "";
+        }
+        PlayerPrefs.DeleteAll();
     }
 }

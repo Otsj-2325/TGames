@@ -31,11 +31,9 @@ public class SCR_ChangeScene : MonoBehaviour
     public static string loadAfterScene;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -120,5 +118,11 @@ public class SCR_ChangeScene : MonoBehaviour
             Invoke("scenename", 0.0f);
         }
 
+    }
+
+    public void BeginGame()
+    {
+        SCR_GameManager.DeleteScore();
+        Change();
     }
 }

@@ -1375,7 +1375,7 @@ GameObject:
   - component: {fileID: 1114519873}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1561,6 +1561,20 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2066910809}
         m_TargetAssemblyTypeName: SCR_ChangeScene, Assembly-CSharp
+        m_MethodName: BeginGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 691927723}
+        m_TargetAssemblyTypeName: SCR_ChangeScene, Assembly-CSharp
         m_MethodName: Change
         m_Mode: 1
         m_Arguments:
@@ -1576,20 +1590,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1770984994}
         m_TargetAssemblyTypeName: SCR_ChangeUIScript, Assembly-CSharp
         m_MethodName: Next
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 644405563}
-        m_TargetAssemblyTypeName: SCR_ChangeScene, Assembly-CSharp
-        m_MethodName: Change
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913d5bcc760ee024b8e067ca0e26d534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: StageSelectScene
+  nextScene: Stage1Scene
   m_IsDelayFlag: 0
   m_DelayTime: 2
   m_IsAbottonflg: 0

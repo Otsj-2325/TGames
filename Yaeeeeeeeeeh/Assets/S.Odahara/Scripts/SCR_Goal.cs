@@ -6,16 +6,17 @@ using UnityEngine;
 public class SCR_Goal : MonoBehaviour
 {
     private SCR_ChangeScene scr_ChangeScene;
-    private bool m_IsClearflg;
     private float m_Countnum;
     float m_time;
-    [SerializeField] private bool[] m_Stagenum;
-    public bool m_IsGameOverflg;
+
+    private bool m_IsClearflg;//アニメーション用
+    private bool m_IsGameOverflg;
     // Start is called before the first frame update
     void Start()
     {
         scr_ChangeScene = GetComponent<SCR_ChangeScene>();
         m_IsClearflg = false;
+        m_IsGameOverflg = false;
         m_Countnum = 300.0f;
         m_time = 0.0f;
     }
