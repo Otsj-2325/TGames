@@ -23,7 +23,6 @@ public class SCR_FadeManager : MonoBehaviour
 
 
     private static float m_fadeTime = 1.5f;//フェードしたい時間（単位は秒
-    private static Color m_color = Color.black;//フェードの色
 
     //遷移先のシーン番号
     private static string m_nextScene;
@@ -66,9 +65,8 @@ public class SCR_FadeManager : MonoBehaviour
     {
         if (m_fadeImage == null) Init();
         m_nextScene = scenename;
-        m_color = col;
         m_fadeTime = fadetime;
-        m_fadeImage.color = Color.clear;     
+        m_fadeImage.color = col;     
         m_fadeCanvas.enabled = true;
         m_alpha = 0.0f;
         m_isFadeOut = true;

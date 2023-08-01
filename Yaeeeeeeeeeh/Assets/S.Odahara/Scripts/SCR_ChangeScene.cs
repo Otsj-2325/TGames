@@ -21,6 +21,9 @@ public class SCR_ChangeScene : MonoBehaviour
     [Header("Bボタンを使用するか")]
     [SerializeField] bool m_IsBbottonflg = false;
 
+    [Header("ロードシーンを通すか")]
+    [SerializeField] bool m_IsLoadflg = false;
+
 
     [SerializeField] Color m_FadeOutColor = Color.black;
     [SerializeField] float m_FadeOutTime = 0.4f;
@@ -28,33 +31,53 @@ public class SCR_ChangeScene : MonoBehaviour
     public static string loadAfterScene;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //キーボード処理
         if(m_IsAbottonflg)
         {
-            if(Gamepad.current.buttonSouth.isPressed || Input.GetKey(KeyCode.Return))
+            if(Input.GetKey(KeyCode.Return))
             {
                 if (m_IsDelayFlag) Invoke("Change", m_DelayTime);
-                else Invoke("Change", 0.0f);
+                else Change();
             }
         }
         if (m_IsBbottonflg)
         {
-            if (Gamepad.current.bButton.isPressed || Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
                 {
                 if (m_IsDelayFlag) Invoke("Change", m_DelayTime);
-                else Invoke("Change", 0.0f);
+                else Change();
             }
         }
 
+        //ゲームパッド処理
+        if (Gamepad.current == null) { return; }
+        else
+        {
+            if (m_IsAbottonflg)
+            {
+                if (Gamepad.current.buttonSouth.isPressed)
+                {
+                    if (m_IsDelayFlag) Invoke("Change", m_DelayTime);
+                    else Change();
+                }
+            }
+            if (m_IsBbottonflg)
+            {
+                if (Gamepad.current.bButton.isPressed)
+                {
+                    if (m_IsDelayFlag) Invoke("Change", m_DelayTime);
+                    else Change();
+                }
+            }
+        }
     }
 
     //シーン切り替え
@@ -62,7 +85,8 @@ public class SCR_ChangeScene : MonoBehaviour
     {        
         //ロード後のシーン
         loadAfterScene = nextScene;
-        SCR_FadeManager.FadeOut("LoadScene", m_FadeOutColor, m_FadeOutTime);
+        if (m_IsLoadflg) SCR_FadeManager.FadeOut("LoadScene", m_FadeOutColor, m_FadeOutTime);
+        else SCR_FadeManager.FadeOut(loadAfterScene, m_FadeOutColor, m_FadeOutTime);
 
     }
 
@@ -79,5 +103,26 @@ public class SCR_ChangeScene : MonoBehaviour
             Invoke("NextScene", 0.0f);
         }
         
+    }
+
+    public void Change(string scenename)
+    {
+        Time.timeScale = 1f;
+        if (m_IsDelayFlag)
+        {
+            Invoke("scenename", m_DelayTime);
+        }
+
+        else
+        {
+            Invoke("scenename", 0.0f);
+        }
+
+    }
+
+    public void BeginGame()
+    {
+        SCR_GameManager.DeleteScore();
+        Change();
     }
 }
