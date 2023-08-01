@@ -89,7 +89,6 @@ public class SCR_PlayerController : MonoBehaviour
             transform.position -= m_Speed * transform.right * Time.deltaTime;
         }
 
-        //Debug.Log("ˆÚ“®—Ê:" + m_Velocity.normalized);
 
         Quaternion Rotation = Quaternion.LookRotation(m_Velocity.normalized, Vector3.up);
         if(m_Velocity.magnitude != 0)
