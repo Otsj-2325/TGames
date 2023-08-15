@@ -7,9 +7,6 @@ public class CreateShadowMulti : MonoBehaviour
     [Header("実体化する物")]
     [SerializeField] private GameObject circle;
 
-    //private MeshFilter mesh_filter;
-    //private Mesh mesh;
-    private List<MeshFilter> mesh_filter = new List<MeshFilter>();
     private List<Mesh> mesh = new List<Mesh>();
 
     private bool create = true;
@@ -21,23 +18,14 @@ public class CreateShadowMulti : MonoBehaviour
 
         // メッシュを取得
         foreach (GameObject obj in objectsWithTag)
-        {
-            mesh_filter.Add(obj.GetComponent<MeshFilter>());
             mesh.Add(obj.GetComponent<MeshFilter>().mesh);
-        }
-
-        //mesh_filter = circle.GetComponent<MeshFilter>();
-        //mesh = mesh_filter.mesh;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Eキーを押したら影の形からオブジェクトを生成
-        if (!Input.GetKeyDown(KeyCode.E))
-        {
-            return;
-        }
+        if (!Input.GetKeyDown(KeyCode.E)) return;
 
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("LightingObject");
         List<Vector3[]> vertices = new List<Vector3[]>();
@@ -69,7 +57,6 @@ public class CreateShadowMulti : MonoBehaviour
                 }
             }
             vertices2.Add(temp_vector3);
-            
         }
 
         //Vector3[] vertices = mesh.vertices;
