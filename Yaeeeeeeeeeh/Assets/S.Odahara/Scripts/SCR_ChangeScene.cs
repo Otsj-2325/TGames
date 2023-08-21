@@ -31,6 +31,8 @@ public class SCR_ChangeScene : MonoBehaviour
     public static string loadAfterScene;
 
 
+    private float m_time = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -110,12 +112,14 @@ public class SCR_ChangeScene : MonoBehaviour
         Time.timeScale = 1f;
         if (m_IsDelayFlag)
         {
-            Invoke("scenename", m_DelayTime);
+            nextScene = scenename;
+            Invoke("NextScene", m_DelayTime);
         }
 
         else
         {
-            Invoke("scenename", 0.0f);
+            nextScene = scenename;
+            Invoke("NextScene", 0.0f);
         }
 
     }
