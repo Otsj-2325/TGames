@@ -9,6 +9,7 @@ TagManager:
   - Turara
   - Wall
   - GameManager
+  - LightingObject
   layers:
   - Default
   - TransparentFX

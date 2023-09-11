@@ -28,13 +28,21 @@ public class SCR_PlayerController : MonoBehaviour
 
     public float knockBackPower;   // ノックバックさせる力
 
+    /*==================AbeZone====================*/
+    private SCR_GroundTrigger scr_GT;
+    /*=============================================*/
+
     // Start is called before the first frame update
     void Start()
     {
         cp_Rigidbody = GetComponent<Rigidbody>();
+
+        /*==================AbeZone====================*/
+        scr_GT = this.transform.Find("GroundTrigger").GetComponent<SCR_GroundTrigger>();
+        /*=============================================*/
     }
 
-    // Update is called once per frame
+// Update is called once per frame
     void Update()
     {
         // ゲームパッドが接続されていないとnullになる。
@@ -115,7 +123,7 @@ public class SCR_PlayerController : MonoBehaviour
         }
 
         // 落下
-        if (m_IsJumping == true)
+        if (m_IsJumping == true || !scr_GT.IsGround())
         {
             m_JumpVelocity -= m_Glavity * Time.deltaTime;
         }
