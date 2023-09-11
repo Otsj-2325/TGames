@@ -22,8 +22,8 @@ public class Circle : MonoBehaviour
             point[36 - i].x = point[1].x * Mathf.Cos(rad) - point[1].y * Mathf.Sin(rad);
             point[36 - i].y = -point[1].x * Mathf.Sin(rad) + point[1].y * Mathf.Cos(rad);
 
-            Debug.Log(point[i + 2].x);
-            Debug.Log(point[i + 2].y);
+            //Debug.Log(point[i + 2].x);
+            //Debug.Log(point[i + 2].y);
         }
 
         // —§‘Ì‚É‚·‚é
