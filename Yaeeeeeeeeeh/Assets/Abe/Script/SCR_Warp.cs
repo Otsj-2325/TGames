@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class SCR_Warp : MonoBehaviour
 {
-    [SerializeField] private GameObject m_DetnWarp;
+    [SerializeField] [Header("ÉèÅ[ÉvêÊ")] private GameObject m_DetnWarp;
+    [SerializeField] [Header("ëJà⁄êÊÉJÉÅÉâ")] private int m_VCamNum;
 
     private Transform m_WarpPos;
     private GameObject m_Player;
+
     private SCR_WarpTrigger scr_Wt;
+    private SCR_VCamManager scr_VM;
+
     private bool m_OnWarp;
 
     private void Start()
     {
         m_WarpPos = m_DetnWarp.transform.Find("WarpPoint").transform;
         m_Player = FindObjectOfType<SCR_PlayerController>().gameObject;
+
         scr_Wt = this.transform.GetChild(0).gameObject.GetComponent<SCR_WarpTrigger>();
+        scr_VM = FindObjectOfType<SCR_VCamManager>();
     }
     
     private void FixedUpdate()
     {
         var contact = scr_Wt.m_Contact;
-
         var canwarp = m_OnWarp && contact;
+
         if (canwarp)
         {
+            scr_VM.SwitchVCam(m_VCamNum);
             m_Player.transform.position =  m_WarpPos.transform.position;
             m_DetnWarp.GetComponent<SCR_Warp>().Arrival();
         }

@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
-public class SCR_LookDownVcam : MonoBehaviour
+
+public class SCR_VCamLookDown : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera cp_Vcam;
+    [SerializeField] private int m_VCamNum;
+
+    private SCR_VCamManager scr_VM = null;
+
     void Start()
     {
-        cp_Vcam.Priority = 0;
+        scr_VM = FindObjectOfType<SCR_VCamManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            cp_Vcam.Priority = 100;
+            scr_VM.OneTimeVCamOn(m_VCamNum);
         }
     }
 
@@ -22,7 +23,7 @@ public class SCR_LookDownVcam : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            cp_Vcam.Priority = 0;
+            scr_VM.OnTimeVCamOff();
         }
     }
 }
